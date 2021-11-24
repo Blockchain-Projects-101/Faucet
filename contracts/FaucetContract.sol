@@ -8,6 +8,6 @@ contract Faucet {
     receive() external payable {}
 
     function addFunds() external payable {
-        funders.push(msg.sender)
+        funders.push(msg.sender);
     }
 }
