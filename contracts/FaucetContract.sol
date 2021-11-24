@@ -14,4 +14,8 @@ contract Faucet {
     function getAllFunders() external view returns (address[] memory){
         return funders;
     }
-}
+    function getFunderAtIndex(uint8 index) external view returns(address){
+        address memory _funders = getAllFunders();
+        return _funders[index];
+    }
+} 
