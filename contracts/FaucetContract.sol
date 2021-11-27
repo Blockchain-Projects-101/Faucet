@@ -4,6 +4,7 @@ pragma solidity >=0.4.22 <0.9.0;
 contract Faucet {
     uint256 public numOfFunders;
     mapping(address => bool) public funders;
+    mapping(uint => address) public lutFunders;
 
     receive() external payable {}
 
@@ -12,6 +13,7 @@ contract Faucet {
         if (!funders[funder]) {
             numOfFunders++;
             funders[funder] = true;
+            lutFunders[numOfFunders] = funder;
         }
     }
 
