@@ -29,3 +29,9 @@ contract Faucet {
         return lutFunders[index];
     }
 }
+
+// const instance = await Faucet.deployed()
+// instance.addFunds({from:accounts[0],value:"20000000000"})
+// instance.addFunds({from:accounts[1],value:"20000000000"})
+// instance.addFunds({from:accounts[2],value:"20000000000"})
+// instance.getAllFunders()
