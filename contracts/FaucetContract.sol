@@ -25,11 +25,7 @@ contract Faucet {
         }
     }
 
-    function withdraw(uint256 withdrawAmount) external {
-        require(
-            withdrawAmount <= 100000000000000000,
-            "You can't withdraw more than 0.1 ether"
-        );
+    function withdraw(uint256 withdrawAmount) external limitWithdraw(withdrawAmount) {
         payable(msg.sender).transfer(withdrawAmount);
     }
 
