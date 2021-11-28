@@ -4,14 +4,14 @@ pragma solidity >=0.4.22 <0.9.0;
 contract Faucet {
     uint256 public numOfFunders;
     mapping(address => bool) public funders;
-    mapping(uint => address) public lutFunders;
+    mapping(uint256 => address) public lutFunders;
 
     receive() external payable {}
 
     function addFunds() external payable {
         address funder = msg.sender;
         if (!funders[funder]) {
-            uint index = numOfFunders++;
+            uint256 index = numOfFunders++;
             funders[funder] = true;
             lutFunders[index] = funder;
         }
