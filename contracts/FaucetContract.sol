@@ -6,6 +6,14 @@ contract Faucet {
     mapping(address => bool) public funders;
     mapping(uint256 => address) public lutFunders;
 
+    modifier limitWithdraw(uint256 withdrawAmount) {
+        require(
+            withdrawAmount <= 100000000000000000,
+            "You can't withdraw more than 0.1 ether"
+        );
+        _;
+    }
+
     receive() external payable {}
 
     function addFunds() external payable {
@@ -18,8 +26,11 @@ contract Faucet {
     }
 
     function withdraw(uint256 withdrawAmount) external {
-        require(withdrawAmount <= 100000000000000000,"You can't withdraw more than 0.1 ether");
-            payable(msg.sender).transfer(withdrawAmount);
+        require(
+            withdrawAmount <= 100000000000000000,
+            "You can't withdraw more than 0.1 ether"
+        );
+        payable(msg.sender).transfer(withdrawAmount);
     }
 
     function getAllFunders() external view returns (address[] memory) {
@@ -40,4 +51,4 @@ contract Faucet {
 // instance.addFunds({from:accounts[1],value:"2000000000000000000"})
 // instance.addFunds({from:accounts[2],value:"2000000000000000000"})
 // instance.getAllFunders()
-// instance.withdraw("1000000000000",{from:accounts[1]})
+// instance.withdraw("5000000000000",{from:accounts[0]})
