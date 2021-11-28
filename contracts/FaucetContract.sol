@@ -17,6 +17,12 @@ contract Faucet {
         }
     }
 
+    function withdraw(uint256 withdrawAmount) external {
+        if (withdrawAmount < 1000000000000000000) {
+            payable(msg.sender).transfer(withdrawAmount);
+        }
+    }
+
     function getAllFunders() external view returns (address[] memory) {
         address[] memory _funders = new address[](numOfFunders);
         for (uint256 i = 0; i < numOfFunders; i++) {
