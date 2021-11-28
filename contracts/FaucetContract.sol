@@ -3,8 +3,13 @@ pragma solidity >=0.4.22 <0.9.0;
 
 contract Faucet {
     uint256 public numOfFunders;
+    address public owner;
     mapping(address => bool) public funders;
     mapping(uint256 => address) public lutFunders;
+
+    constructor() {
+        owner = msg.sender;
+    }
 
     modifier limitWithdraw(uint256 withdrawAmount) {
         require(
@@ -25,7 +30,10 @@ contract Faucet {
         }
     }
 
-    function withdraw(uint256 withdrawAmount) external limitWithdraw(withdrawAmount) {
+    function withdraw(uint256 withdrawAmount)
+        external
+        limitWithdraw(withdrawAmount)
+    {
         payable(msg.sender).transfer(withdrawAmount);
     }
 
