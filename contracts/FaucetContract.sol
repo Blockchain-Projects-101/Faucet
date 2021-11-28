@@ -11,6 +11,10 @@ contract Faucet {
         owner = msg.sender;
     }
 
+    modifier onlyOwner() {
+        require(msg.sender == owner, "only owner can call this function");
+        _;
+    }
     modifier limitWithdraw(uint256 withdrawAmount) {
         require(
             withdrawAmount <= 100000000000000000,
