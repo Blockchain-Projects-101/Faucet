@@ -26,7 +26,7 @@ contract Faucet is IFaucet {
 
     receive() external payable {}
 
-    function addFunds() external payable {
+    function addFunds() external payable override {
         address funder = msg.sender;
         if (!funders[funder]) {
             uint256 index = numOfFunders++;
@@ -37,6 +37,7 @@ contract Faucet is IFaucet {
 
     function withdraw(uint256 withdrawAmount)
         external
+        override
         limitWithdraw(withdrawAmount)
     {
         payable(msg.sender).transfer(withdrawAmount);
