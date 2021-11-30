@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
+import "./IFaucet";
 
-contract Faucet {
+contract Faucet is IFaucet {
     uint256 public numOfFunders;
     address public owner;
     mapping(address => bool) public funders;
