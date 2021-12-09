@@ -1,13 +1,13 @@
 import "./App.css";
 import {
-  useEffect
+  useEffect,useState
 } from "react";
 import Web3 from "web3";
 
 function App() {
+  const [web3Api, setWeb3Api] = useState({ provider: null, web3: null });
 
   useEffect(() => {
-    const [web3Api, setWeb3Api] = useState({ provider: null, web3: null });
     const loadProvider = async () => {
       let provider = null;
       if (window.ethereum) {
@@ -19,7 +19,7 @@ function App() {
           console.error("user denied access to account");
         }
       } else if (window.web3) {
-        provider = windows.web3.currentProvider;
+        provider = window.web3.currentProvider;
       } else if (!process.env.production) {
         provider = new Web3.providers.HttpProvider("http://localhost:7545");
       }
