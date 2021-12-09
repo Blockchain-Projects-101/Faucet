@@ -12,6 +12,12 @@ function App() {
       let provider = null;
       if (window.ethereum) {
         provider = window.ethereum;
+        try {
+          await provider.enable();
+        }
+        catch {
+          console.log("user denied access to account");
+        }
       } else if (window.web3) {
         provider = windows.web3.currentProvider;
       } else if (!process.env.production) {
