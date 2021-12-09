@@ -39,10 +39,16 @@ function App() {
   return (
     <div className="faucet-wrapper">
       <div className="faucet">
+        <div className="is-flex">
         <span>
-          <strong>Account:</strong>
+          <strong className="mr-2">Account:</strong>
         </span>
-        <h1>{account ? account : "Not connected"}</h1>
+        <h1>{account ?
+         account :
+          <button className="button ml-2 is-small">Connect wallet</button>
+          }
+          </h1>
+          </div>
         <div className="balance-view is-size-2 mb-4">
           Current Balance <strong>10</strong> ETH
         </div>
