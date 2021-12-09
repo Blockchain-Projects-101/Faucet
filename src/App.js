@@ -43,11 +43,11 @@ function App() {
           <strong>Account:</strong>
         </span>
         <h1>{account ? account : "Not connected"}</h1>
-        <div className="balance-view is-size-2">
+        <div className="balance-view is-size-2 mb-4">
           Current Balance <strong>10</strong> ETH
         </div>
-        <button className="btn mr-2">Donate</button>
-        <button className="btn">Withdraw</button>
+        <button className="button is-link mr-2">Donate</button>
+        <button className="button is-primary">Withdraw</button>
         {/* <button className="btn" onClick={async () => {
           const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
           console.log(accounts);
