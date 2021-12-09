@@ -17,6 +17,10 @@ function App() {
       } else if (!process.env.production) {
         provider = new Web3.providers.HttpProvider("http://localhost:7545");
       }
+      setWeb3Api({
+        web3: new Web3(provider),
+        provider
+      })
     }
     loadProvider()
   }, []);
