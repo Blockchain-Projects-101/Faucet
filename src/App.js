@@ -44,7 +44,9 @@ function App() {
   return (
     <div className="faucet-wrapper">
       <div className="faucet">
-        <span>Account</span>
+        <span>
+          <strong>Account:</strong>
+        </span>
         <h1>{account ? account : "Not connected"}</h1>
         <div className="balance-view is-size-2">
           Current Balance <strong>10</strong> ETH
