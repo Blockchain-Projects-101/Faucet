@@ -13,7 +13,7 @@ function App() {
     const loadProvider = async () => {
       const provider = await detectEthereumProvider();
       if (provider) {
-        provider.request({method:"eth_requestAccounts"})
+        // provider.request({method:"eth_requestAccounts"})
         setWeb3Api({
           web3: new Web3(provider),
           provider
