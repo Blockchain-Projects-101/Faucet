@@ -57,8 +57,8 @@ function App() {
       <div className="balance-view is-size-2 mb-4">
         Current Balance <strong>10</strong> ETH
       </div>
-      <button className="button is-link mr-2">Donate</button>
-      <button className="button is-primary">Withdraw</button>
+      <button className="button is-link mr-2 is-small">Donate</button>
+      <button className="button is-primary is-small">Withdraw</button>
       {/* <button className="btn" onClick={async () => {
           const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
           console.log(accounts);
