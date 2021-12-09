@@ -2,6 +2,7 @@ import "./App.css";
 import {
   useEffect
 } from "react";
+import Web3 from "web3";
 
 function App() {
 
@@ -27,9 +28,9 @@ function App() {
         </div>
         <button className="btn mr-2">Donate</button>
         <button className="btn">Withdraw</button>
-        <button className="btn" onClick={async ()=>{
-          const accounts = await window.ethereum.request({method:"eth_requestAccounts"});
-          console.log(accounts); 
+        <button className="btn" onClick={async () => {
+          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+          console.log(accounts);
         }}>Enable Ethereum</button>
       </div>
     </div>
