@@ -1,19 +1,19 @@
 import "./App.css";
 import {
-  useEffect,useState
+  useEffect, useState
 } from "react";
 import Web3 from "web3";
 
 function App() {
   const [web3Api, setWeb3Api] = useState({ provider: null, web3: null });
-
+  const [account, setAccount] = useState(null);
   useEffect(() => {
     const loadProvider = async () => {
       let provider = null;
       if (window.ethereum) {
         provider = window.ethereum;
         try {
-          await provider.request({method:"eth_requestAccounts"});
+          await provider.request({ method: "eth_requestAccounts" });
         }
         catch {
           console.error("user denied access to account");
@@ -30,6 +30,17 @@ function App() {
     }
     loadProvider()
   }, []);
+  // console.log(web3Api.web3);
+
+  useEffect(() => {
+    const getAccount = async () => {
+
+      const accounts = await web3Api.web3.ethereum.getAccounts();
+      setAccount(accounts[0]);
+    }
+    web3Api.web3 && getAccount()
+  }, [web3Api.web3]);
+
   return (
     <div className="faucet-wrapper">
       <div className="faucet">
