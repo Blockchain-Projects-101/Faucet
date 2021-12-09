@@ -11,24 +11,17 @@ function App() {
   const [account, setAccount] = useState(null);
   useEffect(() => {
     const loadProvider = async () => {
-      let provider = null;
-      if (window.ethereum) {
-        provider = window.ethereum;
-        try {
-          await provider.request({ method: "eth_requestAccounts" });
-        }
-        catch {
-          console.error("user denied access to account");
-        }
-      } else if (window.web3) {
-        provider = window.web3.currentProvider;
-      } else if (!process.env.production) {
-        provider = new Web3.providers.HttpProvider("http://localhost:7545");
+      const provider = await detectEthereumProvider();
+      if (provider) {
+        provider.request({method:"eth_requestAccounts"})
+        setWeb3Api({
+          web3: new Web3(provider),
+          provider
+        })
+      } else {
+        console.log("Please install Metamask.");
       }
-      setWeb3Api({
-        web3: new Web3(provider),
-        provider
-      })
+
     }
     loadProvider()
   }, []);
