@@ -8,15 +8,14 @@ function App() {
 
   useEffect(() => {
     const loadProvider = async () => {
-      /*
-      1. with meta mask we have access to window.ethereum and window.web3
-      2.metamask injects a global API to the website
-      3.this API allows websites to request users, accounts,read data from blockchain,sign messages 
-      and transactions.
-
-      */
-      console.log(window.ethereum);
-      console.log(window.web3);
+      let provider = null;
+      if (window.ethereum) {
+        provider = window.ethereum;
+      } else if (window.web3) {
+        provider = windows.web3.currentProvider;
+      } else if (!process.env.production) {
+        provider = new Web3.providers.HttpProvider("http://localhost:7545");
+      }
     }
     loadProvider()
   }, []);
