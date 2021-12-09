@@ -7,6 +7,7 @@ import Web3 from "web3";
 function App() {
 
   useEffect(() => {
+    const [web3Api, setWeb3Api] = useState({ provider: null, web3: null });
     const loadProvider = async () => {
       let provider = null;
       if (window.ethereum) {
