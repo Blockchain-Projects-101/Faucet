@@ -12,9 +12,9 @@ function App() {
   const [account, setAccount] = useState(null);
   useEffect(() => {
     const loadProvider = async () => {
+      
       const provider = await detectEthereumProvider();
       const contract = await loadContract("Faucet",provider);
-      // debugger
       if (provider) {
         // provider.request({method:"eth_requestAccounts"})
         setWeb3Api({
