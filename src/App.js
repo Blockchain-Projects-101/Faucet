@@ -65,8 +65,19 @@ function App() {
       value: web3.utils.toWei("1", "ether")
     })
     reloadEffect()
-  }, [web3Api, account,reloadEffect]);
+  }, [web3Api, account, reloadEffect]);
 
+  // Add the withdraw funds function
+
+  const withdraw = async () => {
+    const { contract, web3 } = web3Api
+    const withdrawAmount = web3.utils.toWei("0.1", "ether")
+    await contract.withdraw(withdrawAmount, {
+      from: account
+
+    })
+    reloadEffect()
+  }
 
   return (
     <div className="faucet-wrapper">
@@ -89,7 +100,7 @@ function App() {
           Current Balance <strong>{balance}</strong> ETH
         </div>
         <button className="button is-link mr-2 is-small" onClick={addFunds}>Donate 1eth</button>
-        <button className="button is-primary is-small">Withdraw</button>
+        <button className="button is-primary is-small" onClick={withdraw}>Withdraw</button>
         {/* <button className="btn" onClick={async () => {
           const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
           console.log(accounts);
