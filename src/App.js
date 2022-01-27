@@ -14,12 +14,16 @@ function App() {
   const [shouldReload, reload] = useState(false);
 
   const reloadEffect = useCallback(() => reload(!shouldReload), [shouldReload]);
+  const setAccountListener = provider => {
+    provider.on("accountsChanged", accounts => setAccount(accounts[0]))
+  }
   useEffect(() => {
     const loadProvider = async () => {
 
       const provider = await detectEthereumProvider();
       const contract = await loadContract("Faucet", provider);
       if (provider) {
+        setAccountListener(provider);
         // provider.request({method:"eth_requestAccounts"})
         setWeb3Api({
           web3: new Web3(provider),
