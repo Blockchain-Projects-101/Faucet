@@ -46,8 +46,13 @@ function App() {
           isProviderLoaded: true
         })
       } else {
-        setWeb3Api({ ...web3Api, isProviderLoaded: true })
-        console.log("Please install Metamask.");
+        setWeb3Api((api)=>{
+          return {
+            ...api,
+            isProviderLoaded:true
+          }
+        })
+        console.error("Please install metamask")
       }
 
     }
@@ -103,26 +108,26 @@ function App() {
     <div className="faucet-wrapper">
       <div className="faucet">
         {web3Api.isProviderLoaded ?
-            <div className="is-flex">
-              <span>
-                <strong className="mr-2">Account:</strong>
-              </span>
-              <h1>{account ?
-                account : !web3Api.provider ?
-                  <>
-                    <span className="notification is-small is-warning is-rounded">Wallet is not detected! &nbsp;
-                      <a href="https://docs.metamask.io" target="_blank" rel="noreferrer">Install Metamask</a>
-                    </span>
-                  </> :
-                  <button className="button ml-2 is-small"
-                    onClick={() => {
-                      web3Api.provider.request({ method: "eth_requestAccounts" })
-                    }}
-                  >Connect wallet</button>
-              }
-              </h1>
-            </div>
-          : 
+          <div className="is-flex">
+            <span>
+              <strong className="mr-2">Account:</strong>
+            </span>
+            <h1>{account ?
+              account : !web3Api.provider ?
+                <>
+                  <span className="notification is-small is-warning is-rounded">Wallet is not detected! &nbsp;
+                    <a href="https://docs.metamask.io" target="_blank" rel="noreferrer">Install Metamask</a>
+                  </span>
+                </> :
+                <button className="button ml-2 is-small"
+                  onClick={() => {
+                    web3Api.provider.request({ method: "eth_requestAccounts" })
+                  }}
+                >Connect wallet</button>
+            }
+            </h1>
+          </div>
+          :
           <span>Looking for metamask</span>
 
         }
