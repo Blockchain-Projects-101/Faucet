@@ -65,7 +65,7 @@ function App() {
       value: web3.utils.toWei("1", "ether")
     })
     reloadEffect()
-  }, [web3Api, account]);
+  }, [web3Api, account,reloadEffect]);
 
 
   return (
