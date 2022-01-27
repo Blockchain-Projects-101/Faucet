@@ -37,7 +37,7 @@ function App() {
     const loadBalance = async () => {
       const { contract, web3 } = web3Api
       const balance = await web3.eth.getBalance(contract.address)
-      setBalance(web3.utils.fromWei(balance,"ether"))
+      setBalance(web3.utils.fromWei(balance, "ether"))
     }
     web3Api.contract && loadBalance()
   }, [web3Api])
@@ -52,6 +52,16 @@ function App() {
     web3Api.web3 && getAccount();
   }, [web3Api.web3]);
 
+  // Add functions to add funds to the contract
+
+  const addFunds =async () => {
+    const { contract, web3 } = web3Api
+
+    await contract.addFunds({
+      from: account,
+      value: web3.utils.toWei("1", "ether")
+    })
+  }
   return (
     <div className="faucet-wrapper">
       <div className="faucet">
@@ -72,7 +82,7 @@ function App() {
         <div className="balance-view is-size-2 mb-4">
           Current Balance <strong>{balance}</strong> ETH
         </div>
-        <button className="button is-link mr-2 is-small">Donate</button>
+        <button className="button is-link mr-2 is-small" onClick={addFunds}>Donate 1eth</button>
         <button className="button is-primary is-small">Withdraw</button>
         {/* <button className="btn" onClick={async () => {
           const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
