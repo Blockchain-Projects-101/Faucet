@@ -16,6 +16,17 @@ function App() {
   const reloadEffect = useCallback(() => reload(!shouldReload), [shouldReload]);
   const setAccountListener = provider => {
     provider.on("accountsChanged", _ => window.location.reload())
+
+
+    // Low level method call to detect the meta account lock change status
+
+    // provider._jsonRpcConnection.events.on("notification",payload=>{
+    //   const {method} = payload
+    //   if(method === "metamask_unblockStateChanged"){
+    //     setAccount(null)
+    //   }
+    // })
+
   }
   useEffect(() => {
     const loadProvider = async () => {
