@@ -105,9 +105,9 @@ function App() {
           <h1>{account ?
             account : !web3Api.provider ?
             <>
-              <div className="notification is-small is-warning is-rounded">Wallet is not detected !
-              <a href="https://docs.metamask.io">Install Metamask</a>
-              </div>
+              <span className="notification is-small is-warning is-rounded">Wallet is not detected! &nbsp; 
+              <a href="https://docs.metamask.io" target="_blank" rel="noreferrer">Install Metamask</a>
+              </span>
             </>:
             <button className="button ml-2 is-small"
               onClick={() => {
