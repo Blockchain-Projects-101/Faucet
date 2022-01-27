@@ -103,7 +103,12 @@ function App() {
             <strong className="mr-2">Account:</strong>
           </span>
           <h1>{account ?
-            account :
+            account : !web3Api.provider ?
+            <>
+              <div className="notification is-small is-warning is-rounded">Wallet is not detected !
+              <a href="https://docs.metamask.io">Install Metamask</a>
+              </div>
+            </>:
             <button className="button ml-2 is-small"
               onClick={() => {
                 web3Api.provider.request({ method: "eth_requestAccounts" })
