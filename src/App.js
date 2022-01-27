@@ -139,9 +139,9 @@ function App() {
         </div>
         {!canConnectToContract && <i className="is-block">Please connect to ganache network</i>}
         <button className="button is-link mr-2 is-small" disabled={!canConnectToContract}
-          onClick={addFunds}>Donate 1eth</button>
+          onClick={addFunds}>Donate 1 eth</button>
         <button className="button is-primary is-small" disabled={!canConnectToContract}
-          onClick={withdraw}>Withdraw</button>
+          onClick={withdraw}>Withdraw 0.1 eth</button>
         {/* <button className="btn" onClick={async () => {
           const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
           console.log(accounts);
