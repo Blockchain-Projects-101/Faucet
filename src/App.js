@@ -20,6 +20,7 @@ function App() {
   const reloadEffect = useCallback(() => reload(!shouldReload), [shouldReload]);
   const setAccountListener = provider => {
     provider.on("accountsChanged", _ => window.location.reload())
+    provider.on("chainChanged", _ => window.location.reload())
 
 
     // Low level method call to detect the meta account lock change status
@@ -130,7 +131,7 @@ function App() {
             </h1>
           </div>
           :
-          <span>Looking for metamask</span>
+          <span>Looking for web3...</span>
 
         }
         <div className="balance-view is-size-2 mb-4">
