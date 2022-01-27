@@ -37,7 +37,7 @@ function App() {
     const loadBalance = async () => {
       const { contract, web3 } = web3Api
       const balance = await web3.eth.getBalance(contract.address)
-      setBalance(balance)
+      setBalance(web3.utils.fromWei(balance,"ether"))
     }
     web3Api.contract && loadBalance()
   }, [web3Api])
