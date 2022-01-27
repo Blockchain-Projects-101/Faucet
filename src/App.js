@@ -10,12 +10,12 @@ import { loadContract } from "./utils/load-contract";
 function App() {
   const [web3Api, setWeb3Api] = useState({ provider: null, web3: null, contract: null });
   const [account, setAccount] = useState(null);
+  const [balance,setBalance] = useState(null);
   useEffect(() => {
     const loadProvider = async () => {
 
       const provider = await detectEthereumProvider();
       const contract = await loadContract("Faucet", provider);
-
       if (provider) {
         // provider.request({method:"eth_requestAccounts"})
         setWeb3Api({
