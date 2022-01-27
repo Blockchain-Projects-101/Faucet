@@ -10,7 +10,7 @@ import { loadContract } from "./utils/load-contract";
 function App() {
   const [web3Api, setWeb3Api] = useState({ provider: null, web3: null, contract: null });
   const [account, setAccount] = useState(null);
-  const [balance,setBalance] = useState(null);
+  const [balance, setBalance] = useState(null);
   useEffect(() => {
     const loadProvider = async () => {
 
@@ -31,6 +31,17 @@ function App() {
     loadProvider()
   }, []);
   // console.log(web3Api.web3);
+  // Load the contract balance
+
+  useEffect(() => {
+    const loadBalance = async () => {
+      const { contract, web3 } = web3Api
+      const balance = await web3.eth.getBalance(contract.address)
+      setBalance(balance)
+    }
+    web3Api.contract && loadBalance()
+  }, [web3Api])
+
 
   useEffect(() => {
     const getAccount = async () => {
@@ -59,7 +70,7 @@ function App() {
           </h1>
         </div>
         <div className="balance-view is-size-2 mb-4">
-          Current Balance <strong>10</strong> ETH
+          Current Balance <strong>{balance}</strong> ETH
         </div>
         <button className="button is-link mr-2 is-small">Donate</button>
         <button className="button is-primary is-small">Withdraw</button>
