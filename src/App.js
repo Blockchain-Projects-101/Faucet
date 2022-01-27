@@ -43,7 +43,7 @@ function App() {
       setBalance(web3.utils.fromWei(balance, "ether"))
     }
     web3Api.contract && loadBalance()
-  }, [web3Api])
+  }, [web3Api, shouldReload])
 
 
   useEffect(() => {
@@ -64,6 +64,7 @@ function App() {
       from: account,
       value: web3.utils.toWei("1", "ether")
     })
+    reloadEffect()
   }, [web3Api, account]);
   return (
     <div className="faucet-wrapper">
