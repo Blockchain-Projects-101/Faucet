@@ -13,7 +13,7 @@ function App() {
   const [balance, setBalance] = useState(null);
   const [shouldReload, reload] = useState(false);
 
-  const reloadEffect = () => reload(!shouldReload);
+  const reloadEffect = useCallback(() => reload(!shouldReload), [shouldReload]);
   useEffect(() => {
     const loadProvider = async () => {
 
@@ -66,6 +66,8 @@ function App() {
     })
     reloadEffect()
   }, [web3Api, account]);
+
+
   return (
     <div className="faucet-wrapper">
       <div className="faucet">
