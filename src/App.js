@@ -1,6 +1,6 @@
 import "./App.css";
 import {
-  useEffect, useState,useCallback
+  useEffect, useState, useCallback
 } from "react";
 import Web3 from "web3";
 import detectEthereumProvider from '@metamask/detect-provider';
@@ -11,6 +11,9 @@ function App() {
   const [web3Api, setWeb3Api] = useState({ provider: null, web3: null, contract: null });
   const [account, setAccount] = useState(null);
   const [balance, setBalance] = useState(null);
+  const [shouldReload, reload] = useState(false);
+
+  const reloadEffect = () => reload(!shouldReload);
   useEffect(() => {
     const loadProvider = async () => {
 
@@ -61,7 +64,7 @@ function App() {
       from: account,
       value: web3.utils.toWei("1", "ether")
     })
-  }, [web3Api,account]);
+  }, [web3Api, account]);
   return (
     <div className="faucet-wrapper">
       <div className="faucet">
