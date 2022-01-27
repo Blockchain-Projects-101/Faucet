@@ -32,8 +32,9 @@ function App() {
     const loadProvider = async () => {
 
       const provider = await detectEthereumProvider();
-      const contract = await loadContract("Faucet", provider);
       if (provider) {
+        const contract = await loadContract("Faucet", provider);
+
         setAccountListener(provider);
         // provider.request({method:"eth_requestAccounts"})
         setWeb3Api({
