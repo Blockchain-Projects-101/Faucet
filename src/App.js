@@ -54,14 +54,14 @@ function App() {
 
   // Add functions to add funds to the contract
 
-  const addFunds =async () => {
+  const addFunds = UseCallback(async () => {
     const { contract, web3 } = web3Api
 
     await contract.addFunds({
       from: account,
       value: web3.utils.toWei("1", "ether")
     })
-  }
+  }, [web3Api]);
   return (
     <div className="faucet-wrapper">
       <div className="faucet">
