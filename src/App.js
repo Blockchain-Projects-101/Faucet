@@ -8,14 +8,14 @@ import { loadContract } from "./utils/load-contract";
 
 
 function App() {
-  const [web3Api, setWeb3Api] = useState({ provider: null, web3: null,contract:null });
+  const [web3Api, setWeb3Api] = useState({ provider: null, web3: null, contract: null });
   const [account, setAccount] = useState(null);
   useEffect(() => {
     const loadProvider = async () => {
-      
+
       const provider = await detectEthereumProvider();
-      const contract = await loadContract("Faucet",provider);
-      
+      const contract = await loadContract("Faucet", provider);
+
       if (provider) {
         // provider.request({method:"eth_requestAccounts"})
         setWeb3Api({
@@ -50,25 +50,24 @@ function App() {
           </span>
           <h1>{account ?
             account :
-            <button className="button ml-2 is-small" 
-            onClick={()=>{
-                web3Api.provider.request({method:"eth_requestAccounts"})
-              }
-              }
-              >Connect wallet</button>
+            <button className="button ml-2 is-small"
+              onClick={() => {
+                web3Api.provider.request({ method: "eth_requestAccounts" })
+              }}
+            >Connect wallet</button>
           }
-        </h1>
-      </div>
-      <div className="balance-view is-size-2 mb-4">
-        Current Balance <strong>10</strong> ETH
-      </div>
-      <button className="button is-link mr-2 is-small">Donate</button>
-      <button className="button is-primary is-small">Withdraw</button>
-      {/* <button className="btn" onClick={async () => {
+          </h1>
+        </div>
+        <div className="balance-view is-size-2 mb-4">
+          Current Balance <strong>10</strong> ETH
+        </div>
+        <button className="button is-link mr-2 is-small">Donate</button>
+        <button className="button is-primary is-small">Withdraw</button>
+        {/* <button className="btn" onClick={async () => {
           const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
           console.log(accounts);
         }}>Enable Ethereum</button> */}
-    </div>
+      </div>
     </div >
 
   );
