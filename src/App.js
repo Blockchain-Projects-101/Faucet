@@ -15,7 +15,7 @@ function App() {
 
   const reloadEffect = useCallback(() => reload(!shouldReload), [shouldReload]);
   const setAccountListener = provider => {
-    provider.on("accountsChanged", accounts => setAccount(accounts[0]))
+    provider.on("accountsChanged", _ => window.location.reload())
   }
   useEffect(() => {
     const loadProvider = async () => {
@@ -103,8 +103,10 @@ function App() {
         <div className="balance-view is-size-2 mb-4">
           Current Balance <strong>{balance}</strong> ETH
         </div>
-        <button className="button is-link mr-2 is-small" onClick={addFunds}>Donate 1eth</button>
-        <button className="button is-primary is-small" onClick={withdraw}>Withdraw</button>
+        <button className="button is-link mr-2 is-small" disabled={!account}
+          onClick={addFunds}>Donate 1eth</button>
+        <button className="button is-primary is-small" disabled={!account}
+          onClick={withdraw}>Withdraw</button>
         {/* <button className="btn" onClick={async () => {
           const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
           console.log(accounts);
