@@ -14,6 +14,8 @@ function App() {
   const [account, setAccount] = useState(null);
   const [balance, setBalance] = useState(null);
   const [shouldReload, reload] = useState(false);
+  const canConnectToContract = account && web3Api.contract
+
 
   const reloadEffect = useCallback(() => reload(!shouldReload), [shouldReload]);
   const setAccountListener = provider => {
@@ -134,9 +136,10 @@ function App() {
         <div className="balance-view is-size-2 mb-4">
           Current Balance <strong>{balance}</strong> ETH
         </div>
-        <button className="button is-link mr-2 is-small" disabled={!account}
+        {!canConnectToContract && <i className="is-block">Please connect to ganache network</i>}
+        <button className="button is-link mr-2 is-small" disabled={!canConnectToContract}
           onClick={addFunds}>Donate 1eth</button>
-        <button className="button is-primary is-small" disabled={!account}
+        <button className="button is-primary is-small" disabled={!canConnectToContract}
           onClick={withdraw}>Withdraw</button>
         {/* <button className="btn" onClick={async () => {
           const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
