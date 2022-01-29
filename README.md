@@ -1,4 +1,4 @@
-# Getting Started with Create React App and compiling and deploying solidity smart contracts to private blockchain networks
+# Getting Started with Create React App and compiling,deploying solidity smart contracts to private blockchain networks
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
